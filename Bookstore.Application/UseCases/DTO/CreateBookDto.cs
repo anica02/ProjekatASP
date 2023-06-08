@@ -13,8 +13,21 @@ namespace Bookstore.Application.UseCases.DTO
         public IEnumerable<CreateBookAuthorDto> BookAuthors { get; set; } = new List<CreateBookAuthorDto>();
         public IEnumerable<CreateBookGenreDto> BookGenres { get; set; } =new List<CreateBookGenreDto>();
 
-        public CreateBookPublisherDto BookPublisher { get; set; }
+        public CreateBookPublisher BookPublisher { get; set; }
 
+    }
+    public class CreateBookPublisher
+    {
+        public int? PublisherId { get; set; }
+        public int NumberOfPages { get; set; }
+        public string BookCover { get; set; }
+        public string BookFormat { get; set; }
+        public string BookWritingSystem { get; set; }
+        public int Year { get; set; }
+
+        public double Price { get; set; }
+        public CreateImage Image { get; set; }
+        public CreateBookDiscountDto? Discount { get; set; }
     }
 
     public class CreateBookAuthorDto { 

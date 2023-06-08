@@ -35,6 +35,7 @@ namespace Bookstore.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Get([FromQuery] UserSearch search,
                                  [FromServices] IGetUsersQuery query)
         {

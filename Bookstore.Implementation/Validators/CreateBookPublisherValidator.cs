@@ -64,6 +64,7 @@ namespace Bookstore.Implementation.Validators
         }
     }
 
+   
     public class CreateImageValidator : AbstractValidator<CreateImage>
     {
   

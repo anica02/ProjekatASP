@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bookstore.Application.UseCaseHandiling;
 using Bookstore.Application.UseCases.Queries;
+using Bookstore.Application.UseCases.Queries.Searches;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,9 +35,10 @@ namespace Bookstore.API.Controllers
 
         // GET: api/<BookPublisherController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get([FromQuery] BookPublishersSearch search, [FromServices] IGetBookPublishersQuery query)
         {
-            return new string[] { "value1", "value2" };
+
+            return Ok(_queryHandler.HandleQuery(query, search));
         }
 
         // GET api/<BookPublisherController>/5

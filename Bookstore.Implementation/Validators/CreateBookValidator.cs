@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Bookstore.Application.UseCases.DTO;
+using Bookstore.Implementation.Extensions;
 
 namespace Bookstore.Implementation.Validators
 {
@@ -23,11 +24,57 @@ namespace Bookstore.Implementation.Validators
             RuleForEach(x => x.BookAuthors).SetValidator(new BookAuthorValidator(context));
 
             RuleForEach(x => x.BookGenres).SetValidator(new BookGenreValidator(context));
-            RuleFor(x => x.BookPublisher).SetValidator(new CreateBookPublisherValidator(context));
+            RuleFor(x => x.BookPublisher).SetValidator(new CreateBookPublisher2Validator(context));
             
         }
     }
 
+    public class CreateBookPublisher2Validator : AbstractValidator<CreateBookPublisher>
+    {
+
+        public CreateBookPublisher2Validator(BookstoreContext context)
+        {
+
+
+            RuleLevelCascadeMode = CascadeMode.Stop;
+
+
+            RuleFor(x => x.PublisherId)
+                .NotEmpty()
+                .WithMessage("Publisher id is required")
+                .Must(x => context.Publishers.Any(p => p.Id == x && p.IsActive))
+                .WithMessage("Publisher id does not exist");
+
+            RuleFor(x => x.BookCover)
+                .NotEmpty()
+                .WithMessage("Book cover is required")
+                .Must(x => ValidationExtensionEntity.AllowedBookCovers.Contains(x))
+                .WithMessage("Invalid book cover. Available: " + string.Join(", ", ValidationExtensionEntity.AllowedBookCovers)); ;
+            RuleFor(x => x.BookFormat)
+                .NotEmpty()
+                .WithMessage("Book format is required").Must(x => ValidationExtensionEntity.AllowedBookFormats.Contains(x))
+                .WithMessage("Invalid book format. Available: " + string.Join(", ", ValidationExtensionEntity.AllowedBookFormats));
+
+            RuleFor(x => x.BookWritingSystem)
+                .NotEmpty()
+                .WithMessage("Book writing system is required")
+                .Must(x => ValidationExtensionEntity.AllowedBookWriting.Contains(x))
+                .WithMessage("Invalid book writing. Available: " + string.Join(", ", ValidationExtensionEntity.AllowedBookWriting));
+            RuleFor(x => x.NumberOfPages)
+                .NotEmpty()
+                .WithMessage("Number of pages is required");
+            RuleFor(x => x.Year)
+                .NotEmpty()
+                .WithMessage("Year is required")
+                .LessThanOrEqualTo(DateTime.Now.Year)
+                .WithMessage("Year must be less or equal to the current one");
+            RuleFor(x => x.Image)
+                .SetValidator(new CreateImageValidator(context));
+            RuleFor(x => x.Discount)
+                .SetValidator(new CreateBookDiscountValidator(context));
+            RuleFor(x => x.Price).NotEmpty().WithMessage("Price is required").GreaterThan(0).WithMessage("Price should be greatr than 0");
+        }
+    }
 
     public class BookAuthorValidator : AbstractValidator<CreateBookAuthorDto>
     {

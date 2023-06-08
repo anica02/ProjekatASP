@@ -52,6 +52,14 @@ namespace Bookstore.API.Middleware
                     message = ex.Message
                 });
             }
+            catch (NotFoundException ex)
+            {
+                context.Response.StatusCode = 404;
+                await context.Response.WriteAsJsonAsync(new
+                {
+                    message = ex.Message
+                });
+            }
             catch (ConflictExceptionCreating ex)
             {
                 context.Response.StatusCode = 409;

@@ -32,6 +32,8 @@ using Bookstore.Application;
 using Bookstore.Implementation.Validators;
 using Bookstore.Application.UseCases.Queries;
 using Bookstore.Implementation.UseCases.Queries;
+using Bookstore.Application.Uploads;
+using Bookstore.Implementation.Uploads;
 
 namespace Bookstore.Implementation
 {
@@ -115,6 +117,7 @@ namespace Bookstore.Implementation
             services.AddTransient<IUseCaseLogger, EfUseCaseLogger>();
 
             services.AddTransient<IFindGenreQuery, EfFindGenreQuery>();
+            services.AddTransient<IBase64FileUploader, Base64FileUploader>();
             services.AddTransient<IFindPublisherQuery, EfFindPublisherQuery>();
             services.AddTransient<IFindUserQuery, EfFindUserQuery>();
             services.AddTransient<IFindAuthorQuery, EfFindAuthorQuery>();
@@ -125,6 +128,10 @@ namespace Bookstore.Implementation
             services.AddTransient<IGetAuthorsQuery, EfGetAuthorsQuery>();
             services.AddTransient<IGetGenresQuery, EfGetGenresQuery>();
             services.AddTransient<IGetPublishersQuery, EfGetPublishersQuery>();
+            services.AddTransient<IGetBooksQuery, EfGetBooksQuery>();
+            services.AddTransient<IGetBookPublishersQuery, EfGetBookPublishersQuery>();
+            services.AddTransient<IGetCartsQuery, EfGetCartsQuery>();
+            services.AddTransient<IGetOrdersQuery, EfGetOrdersQuery>();
             services.AddHttpContextAccessor();
 
             services.AddScoped<IApplicationActor>(x =>

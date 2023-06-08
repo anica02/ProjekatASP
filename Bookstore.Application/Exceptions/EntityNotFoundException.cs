@@ -14,4 +14,13 @@ namespace Bookstore.Application.Exceptions
 
         }
     }
+    public class NotFoundException : Exception
+    {
+        public NotFoundException( string entityType)
+            : base($"Entity of type {entityType}  was not found.")
+        {
+
+        }
+    }
+
 }

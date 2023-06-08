@@ -258,6 +258,36 @@ namespace Bookstore.API.Controllers
             _context.RoleUseCases.Add(roleUseCaseAdmin37);
             _context.SaveChanges();
 
+            RoleUseCase roleUseCaseAdmin38 = new RoleUseCase();
+            roleUseCaseAdmin38.RoleId = role2.Id;
+            roleUseCaseAdmin38.UseCaseId = 38;
+            _context.RoleUseCases.Add(roleUseCaseAdmin37);
+            _context.SaveChanges();
+
+            RoleUseCase roleUseCaseAdmin41 = new RoleUseCase();
+            roleUseCaseAdmin41.RoleId = role1.Id;
+            roleUseCaseAdmin41.UseCaseId = 38;
+            _context.RoleUseCases.Add(roleUseCaseAdmin41);
+            _context.SaveChanges();
+
+            RoleUseCase roleUseCaseAdmin39 = new RoleUseCase();
+            roleUseCaseAdmin39.RoleId = role2.Id;
+            roleUseCaseAdmin39.UseCaseId = 39;
+            _context.RoleUseCases.Add(roleUseCaseAdmin39);
+            _context.SaveChanges();
+
+            RoleUseCase roleUseCaseAdmin40 = new RoleUseCase();
+            roleUseCaseAdmin40.RoleId = role2.Id;
+            roleUseCaseAdmin40.UseCaseId = 40;
+            _context.RoleUseCases.Add(roleUseCaseAdmin40);
+            _context.SaveChanges();
+
+            RoleUseCase roleUseCaseAdmin42 = new RoleUseCase();
+            roleUseCaseAdmin42.RoleId = role2.Id;
+            roleUseCaseAdmin42.UseCaseId = 41;
+            _context.RoleUseCases.Add(roleUseCaseAdmin42);
+            _context.SaveChanges();
+
 
             string pass1 = "sifra123";
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(pass1);

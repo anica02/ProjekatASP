@@ -15,6 +15,6 @@ namespace Bookstore.API.Jwt
 
         public string Username => "unauthorized";
 
-        public IEnumerable<int> AllowedUseCases => new List<int> {9,30};
+        public IEnumerable<int> AllowedUseCases => new List<int> {9,30, 38};
     }
 }

@@ -47,6 +47,7 @@ namespace Bookstore.API.Extensions
             services.AddTransient<CreateBookDiscountValidator>();
             services.AddTransient<CreateImageValidator>();
             services.AddTransient<CreateBookPublisherValidator>();
+            services.AddTransient<CreateBookPublisher2Validator>();
             services.AddTransient<UpdateBookValidator>();
             services.AddTransient<UpdatePublisherValidator>();
             services.AddTransient<UpdateAuthorValidator>();

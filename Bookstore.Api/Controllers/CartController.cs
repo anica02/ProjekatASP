@@ -2,6 +2,7 @@
 using Bookstore.Application.UseCases.Commands;
 using Bookstore.Application.UseCases.DTO;
 using Bookstore.Application.UseCases.Queries;
+using Bookstore.Application.UseCases.Queries.Searches;
 using Bookstore.DataAccess;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -31,10 +32,12 @@ namespace Bookstore.API.Controllers
         }
 
         // GET: api/<CartController>
+     
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get([FromQuery] CartSearch search,
+                                 [FromServices] IGetCartsQuery query)
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_queryHandler.HandleQuery(query, search));
         }
 
         // GET api/<CartController>/5
