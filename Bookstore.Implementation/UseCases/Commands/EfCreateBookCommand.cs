@@ -92,10 +92,10 @@ namespace Bookstore.Implementation.UseCases.Commands
             Context.Prices.Add(price);
             Context.SaveChanges();
 
-            //var filePath = _fileUploader.Upload(request.BookPublisher.Image.Path, UploadType.BookImage);
+            var filePath = _fileUploader.Upload(request.BookPublisher.Image.Path, UploadType.BookImage);
             File image = new File();
-            //image.Path = filePath;
-            image.Path = request.BookPublisher.Image.Path;
+            image.Path = filePath;
+            
             image.Size = request.BookPublisher.Image.Size;
             image.BookPublisherId = bookPublisher.Id;
             Context.Files.Add(image);
